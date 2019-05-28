@@ -6,5 +6,5 @@ using namespace std;
 int main() {
 	int ret = sayHello();
     assert(ret == 0);
-    return ret;
+    return ret;//hjkl
 }
