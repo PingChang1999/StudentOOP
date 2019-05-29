@@ -13,3 +13,4 @@ notifications:
       - ypc231@nyu.edu
 	  - gLei1776@gmail.com
     on_success: always
+	on_failure: never
