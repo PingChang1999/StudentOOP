@@ -10,7 +10,11 @@ script:
 notifications:
   email:
     recipients:
-      - ypc231@nyu.edu
 	  - gLei1776@gmail.com
     on_success: always
 	on_failure: never
+	
+	recipients:
+	  - ypc231@nyu.edu
+	on_success: always
+	on_failure: always
