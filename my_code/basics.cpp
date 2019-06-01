@@ -112,7 +112,7 @@ void say(std::string s) {
  * */
 void pull_apart_string(std::string s) {
 	for (char i : s) {
-		cout << i << " ";
+		cout << i << " "
 	}
 	cout << endl;
 }
