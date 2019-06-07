@@ -5,6 +5,13 @@
 
 using namespace std;
 
+string get_input_file() {
+	string filenm;
+	cout << "Input the name of the new readings file:\n";
+	cin >> filenm;
+	return filenm;
+}
+
 void get_wreadings(string filenm, Weather& w) {
     ifstream rfile(filenm);
     if (!rfile) {
