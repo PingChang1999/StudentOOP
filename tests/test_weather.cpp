@@ -14,9 +14,9 @@ string get_input_file() {
 
 void get_wreadings(string filenm, Weather& w) {
     ifstream rfile(filenm);
-    if (!rfile) {
+    while (!rfile) {
         cout << "Could not read input file: " << filenm << endl;
-        exit(1);
+		rfile.open(get_input_file());
     }
     int m, d, y;
     double temp, hum, ws;
@@ -29,6 +29,13 @@ void get_wreadings(string filenm, Weather& w) {
 
 
 int main() {
+	WReading test_temps = WReading(Date(1, 1, 2019), 0, 50, 10);
+	double freezingF = test_temps.get_tempF();
+	assert(freezingF == 32.0);
+	WReading test_temps = WReading(Date(1, 1, 2019), 100, 50, 10);
+	double freezingF = test_temps.get_tempF();
+	assert(freezingF == 212.0);
+
     Weather irkutsk = Weather("Irkutsk", GPS(46.3, 67.2));
 
     string filenm;
