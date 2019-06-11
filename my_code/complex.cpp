@@ -6,13 +6,7 @@
 using namespace std;
 
 bool operator== (const Complex& c1, const Complex& c2) {
-	// /*
-	if (c1.get_real() == c2.get_real() && c1.get_imag() == c2.get_imag()) {
-		return true;
-	}
-	return false;
-	// */
-	return true;
+    return true;  // temp!
 }
 
 ostream& operator<< (ostream& os, const Complex& c) {
@@ -22,6 +16,7 @@ ostream& operator<< (ostream& os, const Complex& c) {
      * number of decimal places, while `showpos` turns on the plus
      * sign for positive numbers.
      * */
+    return os;
 }
 
 
@@ -29,26 +24,31 @@ ostream& operator<< (ostream& os, const Complex& c) {
  * Read a `Complex` number from an input stream.
  * */
 istream& operator>> (istream& is, Complex& c) {
+    return is;
 }
 
+Complex::Complex(double real, double imag) {}
 
 Complex::operator bool() const {
+    return true;
 }
 
 Complex& Complex::operator++() {
+    return *this;
 }
 
 Complex Complex::operator++(int dummy) {
-}
-
-Complex operator+(const Complex& c1, const Complex& c2) {
+    return *this;
 }
 
 double Complex::get_real() const {
+    return real;
 }
 
 double Complex::get_imag() const {
+    return imag;
 }
 
 Complex Complex::operator*(const int i) {
+    return *this;
 }
