@@ -32,6 +32,8 @@ class WReading {
         date(dt), temperature(temp), humidity(hum), windspeed(ws)
     {
     }
+	double get_tempF() const;
+	double get_tempC() { return temperature; }
 
  private:
     Date date;
@@ -60,6 +62,7 @@ class Weather {
     std::string station_nm;
     GPS my_loc;
     int rating = UNRATED;
+	double temp;
 };
 
 
