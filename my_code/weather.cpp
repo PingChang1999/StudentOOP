@@ -23,6 +23,9 @@ Date::Date(int d, int m, int y) {
 
 ostream& operator << (ostream& os, const Weather& w) {
 	os << w.get_name() << ": rating" << w.get_rating() << "," << w.my_loc;
+	for (WReading wr : w.wreadings) {
+		os << "	" << wr << endl;
+	}
 	return os;
 }
 
@@ -32,7 +35,7 @@ ostream& operator << (ostream& os, const GPS& gps) {
 }
 
 ostream& operator << (ostream& os, const WReading& wr) {
-	os << wr.date << ": temp;" << wr.temperature << "; humid:"
+	os << wr.date << ": temp:" << wr.temperature << "; humid:"
 		<< wr.humidity << "; wind:" << wr.windspeed;
 	return os;
 }
@@ -57,4 +60,11 @@ void Weather::set_rating(int new_rating) {
 
 void Weather::add_reading(WReading wr) {
 	wreadings.push_back(wr);
+}
+
+const double F_TO_C = 5 / 9;
+const double C_TO_F = 9 / 5;
+
+double WReading::get_tempF() const {
+	return (temperature * C_TO_F) + 32;
 }
