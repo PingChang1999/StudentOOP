@@ -51,7 +51,10 @@ istream& operator>> (istream& is, Complex& c) {
 Complex::Complex(double real, double imag) : real(real), imag(imag) {}
 
 Complex::operator bool() const {
-    return true;
+	if ((real != 0) || (imag != 0)) {
+		return true;
+	}
+	return false;
 }
 
 Complex& Complex::operator++() {
@@ -66,7 +69,9 @@ Complex Complex::operator++(int dummy) {
 }
 
 Complex Complex::operator-=(const Complex& c) {
-
+	real -= c.real;
+	imag -= c.imag;
+	return *this;
 }
 
 double Complex::get_real() const {
@@ -78,5 +83,25 @@ double Complex::get_imag() const {
 }
 
 Complex Complex::operator*(const int i) {
+	real *= i;
+	imag *= i;
     return *this;
+}
+
+Complex& Complex::operator--() {
+	--real;
+	return *this;
+}
+
+Complex Complex::operator--(int dummy) {
+	Complex temp = *this;
+	real--;
+	return temp;
+}
+
+Complex operator-(const Complex& c1, const Complex& c2) {
+	double new_real = c1.get_real() - c2.get_real();
+	double new_imag = c1.get_imag() - c2.get_imag();
+	Complex c3(new_real, new_imag);
+	return c3;
 }
