@@ -7,7 +7,7 @@ using namespace std;
 /*
  * A constructor for weather class.
  * */
-Weather::Weather(std::string nm, GPS loc) :
+Weather::Weather(string nm, GPS loc) :
     station_nm(nm), my_loc(loc) {
 }
 
@@ -67,4 +67,51 @@ const double C_TO_F = 9 / 5;
 
 double WReading::get_tempF() const {
 	return (temperature * C_TO_F) + 32;
+}
+
+Image::Image(int w, int h, std::string flnm)
+	:width(w), height(h)
+{
+	filename = flnm;
+	image_buf = new char[image_sz()];
+}
+
+//copy construtor:
+Image::Image(const Image& img2) {
+	height = img2.height;
+	width = img2.width;
+	filename = img2.filename;
+	image_buf = new char[image_sz()];
+	for (int i = 0; i < image_sz(); i++) {
+		image_buf[i] = img2.image_buf[i];
+	}
+}
+
+//destructor:
+Image::~Image() {
+	if (image_buf != nullptr) delete image_buf;
+}
+
+//assignment operator:
+Image& Image::operator=(const Image& img2) {
+	if (&img2 != this) {
+		if (image_buf != nullptr) delete image_buf;
+		height = img2.height;
+		width = img2.width;
+		filename = img2.filename;
+		image_buf = new char[image_sz()];
+		for (int i = 0; i < image_sz(); i++) {
+			image_buf[i] = img2.image_buf[i];
+		}
+
+	}
+	return *this;
+}
+
+int Image::image_sz() {
+	return width * height;
+}
+
+string Image::display(string s) {
+	return "Displaying image " + s;
 }
