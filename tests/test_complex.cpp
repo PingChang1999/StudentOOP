@@ -38,42 +38,42 @@ int main() {
     c3 -= c2;
     assert(c3 == c1);
 
-//    Complex c4 = Complex();
-//    // test pre-increment:
-//    ++c4;
-//    ++c4;
-//    assert(c4.get_real() == 2);
-//    Complex postinc = c4++;
-//    assert(postinc.get_real() == 2);
-//    postinc--;
-//    assert(postinc.get_real() == 1);
-//    /*
-//     * Test equality operator. If we take the `explicit` off of
-//     * `bool()` in class definition, then this will fail as ambiguous:
-//     * the compiler won't know if we want a `bool` or `Complex` comparison.
-//     * */
-//    if (1 == bool(c4))
-//        cout << "c4 == 1 is true\n";
-//    else
-//        cout << "c4 == 1 is false\n";
-//    // test bool() operator:
-//    if (c4) {
-//        cout << "c4 is true\n";
-//    }
-//    else {
-//        cout << "c4 is false\n";
-//    }
-//    assert(c4);
-//
-//    /*
-//     * The next line of code will implicitly
-//     * construct a `Complex` out of 14.2 using the default
-//     * imaginary component of 0.0.
-//     * */
-//    Complex c5 = 14.2;
-//    cout << c5 << endl;
-//    assert(c5.get_real() == 14.2);
-//    Complex scalar_prod = c5 * 2;
-//    assert(scalar_prod.get_real() == 28.4);
-//    assert(scalar_prod.get_imag() == 0.0);
+    Complex c4 = Complex();
+    // test pre-increment:
+    ++c4;
+    ++c4;
+    assert(c4.get_real() == 2);
+    Complex postinc = c4++;
+    assert(postinc.get_real() == 2);
+    postinc--;
+    assert(postinc.get_real() == 1);
+    /*
+     * Test equality operator. If we take the `explicit` off of
+     * `bool()` in class definition, then this will fail as ambiguous:
+     * the compiler won't know if we want a `bool` or `Complex` comparison.
+     * */
+    if (1 == bool(c4))
+        cout << "c4 == 1 is true\n";
+    else
+        cout << "c4 == 1 is false\n";
+    // test bool() operator:
+    if (c4) {
+        cout << "c4 is true\n";
+    }
+    else {
+        cout << "c4 is false\n";
+    }
+    assert(c4);
+
+    /*
+     * The next line of code will implicitly
+     * construct a `Complex` out of 14.2 using the default
+     * imaginary component of 0.0.
+     * */
+    Complex c5 = 14.2;
+    cout << c5 << endl;
+    assert(c5.get_real() == 14.2);
+    Complex scalar_prod = c5 * 2;
+    assert(scalar_prod.get_real() == 28.4);
+    assert(scalar_prod.get_imag() == 0.0);
 }
