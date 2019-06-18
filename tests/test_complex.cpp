@@ -8,23 +8,11 @@ const bool DEBUG = true;
 
 
 int main() {
-    cout << "Input a complex number:\n";
-    Complex c1;
-    // get a complex from stdin:
-    cin >> c1;
-    if(!cin)
-    {
-        cerr << "Bad input format\n";
-        exit(1);
-    }
-    if(DEBUG)
-    {
-        cout << "c1 = " << c1 << endl;
-    }
+	Complex c1{ 1, 2 };
 
-    Complex c2{43.2, 58.9};
-    assert(c2.get_real() == 43.2);
-    assert(c2.get_imag() == 58.9);
+	Complex c2{ 43.2,58.9 };
+	assert(c2.get_real() == 43.2);
+	assert(c2.get_imag() == 58.9);
 
     if(DEBUG)
     {
@@ -34,6 +22,7 @@ int main() {
     // see if `Complex` addition works:
     Complex c3 = c1 + c2;
     assert(c3.get_real() > 43.2);
+
     // see if `Complex` subtraction works:
     c3 -= c2;
     assert(c3 == c1);
