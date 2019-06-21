@@ -8,9 +8,9 @@
  * The struct `Node`, which is the building block of our linked list code.
  * */
 struct Node {
-    Node(int d, Node* n=nullptr) : data(d), next(n) {}
-    int data;
-    Node* next;
+	Node(int d, Node* n = nullptr) : data(d), next(n) {}
+	int data;
+	Node* next;
 };
 
 
@@ -26,7 +26,7 @@ void add_at_front(Node*& head, int d);
 /*
  * These are coming:
 */
- 
+
 /*
  * Delete the first node and attach head to the 2nd node:
  * */
@@ -45,7 +45,7 @@ Node* duplicate(Node* head);
 /*
  * Reverse the list: return a brand new list with everything reversed.
  * */
-Node* reverse(Node* curr, Node* new_next=nullptr);
+Node* reverse(Node* curr, Node* new_next = nullptr);
 
 /*
  * Join two lists: tack list 2 onto the end of list 1:
