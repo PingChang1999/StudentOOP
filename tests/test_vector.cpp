@@ -19,17 +19,18 @@ int main() {
     for (int i = 0; i < 200; i++) {
         v[i] *= 2;
     }
+	
     assert(v[199] == 398);
     MyVec v3;
     for (int i = 9; i < 100; i += 9) {
         v3.push_back(i);
     }
     assert(v3[1] == 18);
-
+	
     MyVec v2 = v;
     print_vector(v2);
     assert(v2 == v);
-
+	
     v2 = v3;
     print_vector(v2);
     assert(v2 == v3);
