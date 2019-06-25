@@ -112,6 +112,33 @@ int Image::image_sz() {
 	return width * height;
 }
 
-string Image::display(string s) {
-	return "Displaying image " + s;
+string Image::display(std::string s) {
+	cout << "Displaying image" << s << endl;
+	return s;
+}
+
+string Gif::display(std::string s) {
+	cout << "Displaying gif" << s << endl;
+	return s;
+}
+
+string Jpeg::display(std::string s) {
+	cout << "Displaying jpeg" << s << endl;
+	return s;
+}
+
+string Png::display(std::string s) {
+	cout << "Displaying png" << s << endl;
+	return s;
+}
+
+void Weather::display_images() {
+	for (WReading wr : wreadings) {
+		wr.display_image();		
+	}
+}
+
+void WReading::display_image() {
+	if (!image) cout << "No image for reading" << date << endl;
+	else image->display("from wreading");
 }
