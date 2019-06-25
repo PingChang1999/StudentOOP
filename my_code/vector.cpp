@@ -4,19 +4,25 @@
 using namespace std;
 
 void print_vector(const MyVec& v) {
-	for (int i = 0; i < v.size(); i++) {
-		cout << v[i] << " ";
-	}
+	for (int i : v) cout << i << " ";
 	cout << endl;
 }
 
 
-MyVec::MyVec() {
-	sz = 0;
+MyVec::MyVec() : sz(0) {
 	capacity = DEF_CAPACITY;
 	data = new int[DEF_CAPACITY];
 }
 
+MyVec::MyVec(int sz, int val) : sz{ sz } {
+	capacity = sz;
+	data = new int[sz];
+	for (int i = 0; i < sz; i++) {
+		data[i] = val;
+	}
+
+}
+/*
 MyVec::MyVec(const MyVec& v2) {
 	capacity = v2.capacity;
 	sz = v2.size();
@@ -25,11 +31,17 @@ MyVec::MyVec(const MyVec& v2) {
 		data[i] = v2.data[i];
 	}
 }
+*/
+
+MyVec::MyVec(const MyVec& v2) {
+	copy(v2);
+}
 
 MyVec::~MyVec() {
 	delete[] data;
 }
 
+/*
 MyVec& MyVec::operator=(const MyVec& v2) {
 	if (&v2 != this) {
 		delete[] data;
@@ -42,7 +54,22 @@ MyVec& MyVec::operator=(const MyVec& v2) {
 	}
 	return *this;
 }
+*/
+MyVec& MyVec::operator=(const MyVec& v2) {
+	if (this != &v2) {
+		delete[] data;
+		copy(v2);
+	}
+	return *this;
+}
 
+MyVec::Iterator MyVec::begin() const {
+	return MyVec::Iterator(data);
+}
+
+MyVec::Iterator MyVec::end() const {
+	return MyVec::Iterator(data + size());
+}
 
 /*
  * == is true when every element of the vectors are the same in
@@ -62,6 +89,7 @@ bool operator==(MyVec& v1, MyVec& v2) {
 /*
  * Puts an element at the back of a vector.
  * */
+/*
 void MyVec::push_back(int val) {
 	if (sz == capacity-1) {
 		cout << "increasing capacity\n";
@@ -75,7 +103,21 @@ void MyVec::push_back(int val) {
 	}
 	data[sz++] = val;
 }
-
+*/
+void MyVec::push_back(int val) {
+	sz++;
+	if (sz > capacity) {
+		cout << "Increasing capacity\n";
+		int* old_data = data;
+		data = new int[capacity * CAPACITY_MULT];
+		for (int i = 0; i < sz; i++) {
+			data[i] = old_data[i];
+		}
+		capacity *= CAPACITY_MULT;
+		delete[] old_data;
+	}
+	data[sz - 1] = val;
+}
 /*
  * this [] is for reading items from the MyVec:
  * It returns the i-th element.
@@ -90,4 +132,13 @@ int MyVec::operator[](int i) const {
  * */
 int& MyVec::operator[](int i) {
 	return data[i];
+}
+
+void MyVec::copy(const MyVec& v2) {
+	sz = v2.sz;
+	capacity = v2.capacity;
+	data = new int[capacity];
+	for (int i = 0; i < sz; i++) {
+		data[i] = v2.data[i];
+	}
 }
