@@ -7,6 +7,7 @@
 /*
  * This will be the base class for all types of images.
  * */
+
 class Image {
 public:
 	Image(int w, int h, std::string flnm);
@@ -20,7 +21,7 @@ public:
 	 * Setting `display() = 0` here makes this an abstract
 	 * class that can't be implemented.
 	 * */
-	std::string display(std::string s);
+	virtual std::string display(std::string s);
 	/*
 	 * If we don't want virtual method lookup, we
 	 * could just declare:
@@ -37,6 +38,32 @@ private:
 	char* image_buf;
 	void copy_fields(const Image& img2);
 };
+
+class Jpeg : public Image {
+public:
+	Jpeg(int w, int h, std::string flnm)
+		: Image(w, h, flnm)
+	{}
+	std::string display(std::string s);
+};
+
+class Gif : public Image {
+public:
+	Gif(int w, int h, std::string flnm)
+		: Image(w, h, flnm)
+	{}
+	std::string display(std::string s);
+};
+
+class Png : public Image {
+public:
+	Png(int w, int h, std::string flnm)
+		: Image(w, h, flnm)
+	{}
+	std::string display(std::string s);
+};
+
+
 
 
 struct GPS {
@@ -63,18 +90,20 @@ private:
 class WReading {
 	friend std::ostream& operator<<(std::ostream& os, const WReading& wr);
 public:
-	WReading(Date dt, double temp, double hum, double ws) :
-		date(dt), temperature(temp), humidity(hum), windspeed(ws)
+	WReading(Date dt, double temp, double hum, double ws, Image* iptr) :
+		date(dt), temperature(temp), humidity(hum), windspeed(ws), image(iptr)
 	{
 	}
 	double get_tempC() const { return temperature; }
 	double get_tempF() const;
+	void display_image();
 
 private:
 	Date date;
 	double temperature;  // stored temp in C
 	double humidity;
 	double windspeed;
+	Image* image;
 };
 
 
@@ -92,6 +121,7 @@ public:
 	int get_rating() const;
 	void set_rating(int new_rating);
 	void add_reading(WReading wr);
+	void display_images();
 private:
 	std::vector<WReading> wreadings;
 	std::string station_nm;
