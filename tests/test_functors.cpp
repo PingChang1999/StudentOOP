@@ -17,26 +17,36 @@ class Sin {
 class Fib {
     public:
         Fib() {
+			for (int i = 0; i < MAX_FIB; i++) {
+				memo[i] = NOT_CALCED;
+			}
         }
 
         long long int operator()(long long int n) {
+			if (memo[n] != NOT_CALCED) return memo[n];
+
+			long long int ret = NOT_CALCED;
             if (n <= 1) return 1;
-            else return operator()(n - 1) + operator()(n - 2);
+            else ret = operator()(n - 1) + operator()(n - 2);
+			memo[n] = ret;
+			return ret;
         }
 
         const int MAX_FIB = 100;
         const int NOT_CALCED = -1;
-    private:
+   
+	private:
+		long long int* memo = new long long int[MAX_FIB];
 };
 
-
-double your_func(double d, function<double(double)> f) {
-    return 0.0;  // ????
-}
 
 
 double square_func(double d, function<double(double)> f) {
     return f(d) * f(d);
+}
+
+double sqrt(double d, function<double(double)> f) {
+	return sqrt(f(d));
 }
 
 
@@ -58,11 +68,14 @@ int main() {
     cout << "Square of sin 0 = " << d << endl;
     d = square_func(1, [](double arg) { return sin(arg); });
     cout << "Square of sin 1 = " << d << endl;
-    /*
-    // you're call here!
+	d = square_func(1, [](double arg) { return cos(arg); });
     cout << "Square of cos 1 = " << d << endl;
-    // you're call here!
+	d = square_func(0, [](double arg) { return tan(arg); });
     cout << "Square of tan 0 = " << d << endl;
-    // you're call here!
-    */
+	d = sqrt(1, [](double arg) {return sin(arg); });
+	cout << "Sqrt of sin 1 = " << d << endl;
+	d = sqrt(1, [](double arg) {return cos(arg); });
+	cout << "Sqrt of cos 1 = " << d << endl;
+	d = sqrt(0, [](double arg) {return tan(arg); });
+	cout << "Sqrt of tan 0 = " << d << endl;
 }
