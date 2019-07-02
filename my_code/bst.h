@@ -37,7 +37,97 @@ class Bst {
             : data(d), parent(p), left(l), right(r) {}
 
         Bst<T>* insert(const T d) {
+			if (d == data) return nullptr;
+			else if (d < data) {
+				if (!left) { //if left == nullptr
+					left = new Bst(d, this);
+					return left;
+				}
+				else {
+					return left->insert(d);
+				}
+			}
+			else { //d > data
+				if (!right) {
+					right = new Bst(d, this);
+					return right;
+				}
+				else {
+					return right->insert(d);
+				}
+			}
         }
+		T min() {
+			if (!left) {
+				return data;
+			}
+			else {
+				return left->min();
+			}
+		}
+		T max() {
+			if (!right) {
+				return data;
+			}
+			else {
+				return right->max();
+			}
+		}
+		Bst<T>* search(const T d) {
+			if (d == data) {
+				return this;
+			}
+			else if (data > d) {
+				if (!left) {
+					return nullptr;
+				}
+				else {
+					return left->search(d);
+				}
+			}
+			else {
+				if (!right) {
+					return nullptr;
+				}
+				else {
+					return right->search(d);
+				}
+			}
+		}
+		Bst<T>* predecessor(const T d) {
+			Bst<T>* root = search(d);
+			if (!(root->left)) { 
+				Bst<T>* node = root->parent;
+				while (node != nullptr) {
+					if (node->data < root->data) {
+						return node;
+					}
+					else {
+						node = node->parent;
+					}
+				}
+			}
+			else {
+				return search(root->left->max());
+			}
+		}
+		Bst<T>* successor(const T d) {
+			Bst<T>* root = search(d);
+			if (!(root->right)) {
+				Bst<T>* node = root->parent;
+				while (node != nullptr) {
+					if (node->data > root->data) {
+					}
+					else {
+						node = node->parent;
+					}
+				}
+
+			}
+			else {
+				return search(root->right->min());
+			}
+		}
 
         T get_val() const {
             return data;
